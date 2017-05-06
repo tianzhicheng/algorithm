@@ -39,6 +39,10 @@ public:
             }
         }
     }
+    ~Component(){
+        delete [] visted;
+        delete [] id;
+    }
     int getCcount(){
         return ccount;
     }
