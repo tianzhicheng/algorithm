@@ -27,8 +27,8 @@ public:
             stringstream ss(line);
             int a,b;
             ss >> a >> b;
-            assert(a >= 0 && a <E);
-            assert(b >= 0 && b <E);
+            assert(a >= 0 && a <V);
+            assert(b >= 0 && b <V);
             graph.addEdge(a,b);
         }
     }

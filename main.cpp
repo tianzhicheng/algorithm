@@ -12,6 +12,11 @@
 #include "ReadGraph.h"
 #include "Component.h"
 #include "Path.h"
+#include "ShortestPath.h"
+#include "ReadWeightGraph.h"
+#include "WeightedDenseGraph.h"
+#include <iomanip>
+#include "WeightedSparseGraph.h"
 using namespace std;
 
 template<typename T,typename N>
@@ -524,25 +529,42 @@ int main12(){
 //
 //    cout << endl;
 //}
-int main23(){
-   string filename = "/Users/cztzc520/WorkSpace/practice/testG1.txt";
-    SparseGraph g1(13,false);
-    ReadGraph<SparseGraph> r(g1,filename);
+//int main23(){
+//   string filename = "/Users/cztzc520/WorkSpace/practice/testG1.txt";
+//    SparseGraph g1(13,false);
+//    ReadGraph<SparseGraph> r(g1,filename);
 //    g1.show();
 //    DenseGraph g2(13,false);
 //    ReadGraph<DenseGraph> r2(g2,filename);
 //    g2.show();
-    Component<SparseGraph> c1(g1) ;
-    cout << c1.getCcount() << " " << endl;
-}
+//    Component<SparseGraph> c1(g1) ;
+//    cout << c1.getCcount() << " " << endl;
+//}
+//int main(){
+//    string filename = "/Users/cztzc520/WorkSpace/practice/testG2.txt";
+//    SparseGraph g1(7,false);
+//    ReadGraph<SparseGraph> r(g1,filename);
+////    g1.show();
+////    cout << endl;
+////    Path<SparseGraph> p1(g1,0);
+////    cout << "DFS: ";
+////    p1.showPath(6);
+//    shortestPath<SparseGraph> p1(g1,0);
+//    p1.showPath(6);
+//    return 0;
+//}
 int main(){
-    string filename = "/Users/cztzc520/WorkSpace/practice/testG2.txt";
-    SparseGraph g1(7,false);
-    ReadGraph<SparseGraph> r(g1,filename);
-    g1.show();
+    string filename = "/Users/cztzc520/WorkSpace/practice/testG5.txt";
+    int V = 8;
+    cout <<fixed << setprecision(2);
+
+//    WeightedDenseGraph<double> g1 = WeightedDenseGraph<double>(V,false);
+//    ReadWeightGraph<WeightedDenseGraph<double>,double> r1(g1,filename);
+//    g1.show();
+//    cout << endl;
+    WeightedSparseGraph<double> sg1 = WeightedSparseGraph<double>(V,false);
+    ReadWeightGraph<WeightedSparseGraph<double>,double> sr1(sg1,filename);
+    sg1.show();
     cout << endl;
-    Path<SparseGraph> p1(g1,0);
-    cout << "DFS: ";
-    p1.showPath(6);
-    return 0;
+
 }

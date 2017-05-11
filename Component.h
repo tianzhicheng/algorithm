@@ -40,7 +40,7 @@ public:
         }
     }
     ~Component(){
-        delete [] visted;
+        delete [] visited;
         delete [] id;
     }
     int getCcount(){

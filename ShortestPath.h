@@ -6,42 +6,42 @@
 #define PRACTICE_SHORTESTPATH_H
 #include<queue>
 #include<iostream>
-#include<casser>
+#include<cassert>
 #include<vector>
 #include<stack>
 using namespace std;
-tempalte<typename Graph>
+template<typename Graph>
 class shortestPath{
 private:
     Graph &G;
     int* ord;
     int s;
-    bool* visted;
+    bool* visited;
     int* from;
 public:
-    shortestPath(G &g,int s):G(g){
+    shortestPath(Graph &g,int s):G(g){
         assert(s >= 0 && s < G.V());
         this->s = s;
         ord = new int[G.V()];
         from = new int[G.V()];
-        visted = new bool[G.V()];
+        visited = new bool[G.V()];
         for(int i = 0 ; i < G.V(); i++){
             ord[i] = 0;
-            visted[i] = false;
+            visited[i] = false;
             from[i] = -1;
         }
         queue<int> que;
         que.push(s);
-        visted[s] = true;
+        visited[s] = true;
         ord[s] = 0;
 
         while(!que.empty()){
             int head = que.front();
             que.pop();
             typename Graph::adjIterator adj(G,head);
-            for(int i = adj.begin(); !adj.next() ; i = adj.end()){
-                if(!visted[i]){
-                    visted[i] = true;
+            for(int i = adj.begin(); !adj.end() ; i = adj.next()){
+                if(!visited[i]){
+                    visited[i] = true;
                     que.push(i);
                     from[i] = head;
                     ord[i] = ord[head] +1;
@@ -53,10 +53,10 @@ public:
     ~shortestPath(){
         delete []ord;
         delete []from;
-        delete []visted;
+        delete []visited;
     }
     bool hasPath(int v){
-       return visted[v];
+       return visited[v];
     }
     void path(int v, vector<int> &vec){
        stack<int> s ;
