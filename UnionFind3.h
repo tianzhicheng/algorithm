@@ -40,7 +40,7 @@ public:
     void unionEle(int p , int q){
         int proot = find(p);
         int qroot = find(q);
-        if(qroot = qroot)
+        if(qroot = proot)
             return;
         if(rank[proot] < rank[qroot]){
            parent[proot] = qroot;

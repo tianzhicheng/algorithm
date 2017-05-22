@@ -44,6 +44,7 @@ public:
         if(v != w && !directed){
             g[w].push_back(new Edge<Weight>(w,v,weight));
         }
+        m++;
     }
     bool hasEdge(int v , int w){
         assert(v >= 0 && v < n);
@@ -78,15 +79,19 @@ public:
         }
         Edge<Weight> * begin(){
            this->index = 0;
-            return this->next();
+            if( G.g[v].size() )
+                return G.g[v][index];
+            return NULL;
         }
         Edge<Weight>* next(){
-           for(; index < G[index].size(); index++) {
-               return G[v][index];
-           }
+            index++;
+            if(index < G.g[v].size())
+                return G.g[v][index];
+            return NULL;
+
         }
         bool end(){
-            return index > G.V();
+            return index >= G.g[v].size();
         }
     };
 

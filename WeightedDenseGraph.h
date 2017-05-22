@@ -88,8 +88,8 @@ public:
         }
         Edge<Weight>* next(){
             for(index += 1 ; index < G.V(); index++){
-                if(G[v][index] != NULL)
-                    return G[v][index];
+                if(G.g[v][index] != NULL)
+                    return G.g[v][index];
             }
             return NULL;
         }

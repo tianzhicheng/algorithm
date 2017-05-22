@@ -17,6 +17,9 @@
 #include "WeightedDenseGraph.h"
 #include <iomanip>
 #include "WeightedSparseGraph.h"
+#include "LazyPrim.h"
+#include "Prim.h"
+#include "Krusk.h"
 using namespace std;
 
 template<typename T,typename N>
@@ -553,18 +556,62 @@ int main12(){
 //    p1.showPath(6);
 //    return 0;
 //}
-int main(){
-    string filename = "/Users/cztzc520/WorkSpace/practice/testG5.txt";
-    int V = 8;
-    cout <<fixed << setprecision(2);
+//int main(){
+//    string filename = "/Users/cztzc520/WorkSpace/practice/testG5.txt";
+//    int V = 8;
+//    cout <<fixed << setprecision(2);
 
 //    WeightedDenseGraph<double> g1 = WeightedDenseGraph<double>(V,false);
 //    ReadWeightGraph<WeightedDenseGraph<double>,double> r1(g1,filename);
 //    g1.show();
 //    cout << endl;
+//    WeightedSparseGraph<double> sg1 = WeightedSparseGraph<double>(V,false);
+//    ReadWeightGraph<WeightedSparseGraph<double>,double> sr1(sg1,filename);
+//    sg1.show();
+//    cout << endl;
+//}
+//int main45(){
+//    string filename = "/Users/cztzc520/WorkSpace/practice/testG5.txt";
+//    int V = 8 ;
+//    WeightedSparseGraph<double> sg1 = WeightedSparseGraph<double>(V,false);
+//    ReadWeightGraph<WeightedSparseGraph<double>,double> sr1(sg1,filename);
+//    sg1.show();
+//    cout <<endl;
+//    cout << sg1.E() << endl;
+//    LazyPrim<WeightedSparseGraph<double>,double> lp(sg1);
+//    vector<Edge<double>> vec = lp.mstEdges();
+//    for(int i = 0 ; i < vec.size() ; i++){
+//        cout << vec[i] << endl;
+//    }
+//    cout << lp.result() << endl;
+//}
+//int main111(){
+//    string filename = "/Users/cztzc520/WorkSpace/practice/testG5.txt";
+//    int V= 8;
+//    WeightedSparseGraph<double> sg1 = WeightedSparseGraph<double>(V,false);
+//    ReadWeightGraph<WeightedSparseGraph<double>,double>  sr1(sg1,filename);
+//    sg1.show();
+//    cout << endl;
+//    Prim<WeightedSparseGraph<double>,double> p = Prim<WeightedSparseGraph<double>,double>(sg1);
+//    vector<Edge<double>> v = p.getMst();
+//    for(int i = 0 ; i < v.size(); i++){
+//        cout << v[i] << endl;
+//    }
+//    cout << endl;
+//    cout << p.getMstWeight()<< endl;
+//}
+int main(){
+    string filename = "/Users/cztzc520/WorkSpace/practice/testG5.txt";
+    int V= 8;
     WeightedSparseGraph<double> sg1 = WeightedSparseGraph<double>(V,false);
-    ReadWeightGraph<WeightedSparseGraph<double>,double> sr1(sg1,filename);
+    ReadWeightGraph<WeightedSparseGraph<double>,double>  sr1(sg1,filename);
     sg1.show();
     cout << endl;
-
+    Krusk<WeightedSparseGraph<double>,double> k = Krusk<WeightedSparseGraph<double>,double>(sg1);
+    vector<Edge<double>> v = k.mesEdges();
+    for(int i = 0 ; i < v.size() ; i++){
+        cout << v[i] << endl;
+    }
+    cout << endl;
+    cout << k.result() << endl;
 }
