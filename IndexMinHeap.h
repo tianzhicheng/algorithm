@@ -79,7 +79,7 @@ public:
     }
 
     void insert(int index,Item item){
-        assert(index > 0 && index +1 <= capacity);
+        assert(index >= 0 && index +1 <= capacity);
         assert(count+1 <= capacity);
         index ++;
         data[index] = item;

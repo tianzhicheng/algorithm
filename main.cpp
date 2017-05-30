@@ -20,6 +20,8 @@
 #include "LazyPrim.h"
 #include "Prim.h"
 #include "Krusk.h"
+#include "Dijkstra.h"
+#include "BellmanFord.h"
 using namespace std;
 
 template<typename T,typename N>
@@ -600,18 +602,53 @@ int main12(){
 //    cout << endl;
 //    cout << p.getMstWeight()<< endl;
 //}
+//int main(){
+//    string filename = "/Users/cztzc520/WorkSpace/practice/testG5.txt";
+//    int V= 8;
+//    WeightedSparseGraph<double> sg1 = WeightedSparseGraph<double>(V,false);
+//    ReadWeightGraph<WeightedSparseGraph<double>,double>  sr1(sg1,filename);
+//    sg1.show();
+//    cout << endl;
+//    Krusk<WeightedSparseGraph<double>,double> k = Krusk<WeightedSparseGraph<double>,double>(sg1);
+//    vector<Edge<double>> v = k.mesEdges();
+//    for(int i = 0 ; i < v.size() ; i++){
+//        cout << v[i] << endl;
+//    }
+//    cout << endl;
+//    cout << k.result() << endl;
+//}
+//int main(){
+//    string filename = "/Users/cztzc520/WorkSpace/practice/testG6.txt";
+//    int V = 5;
+//    WeightedSparseGraph<int> sg1 = WeightedSparseGraph<int>(V,false);
+//    ReadWeightGraph<WeightedSparseGraph<int>,int> sr1(sg1,filename);
+//    sg1.show();
+//    cout << endl;
+//    Dijkstra<WeightedSparseGraph<int>,int> d(sg1,0);
+//    for(int i = 1 ; i < V ; i++){
+//        cout << "shortest path to " << i << " : " << d.shortestPathTo(i) << endl;
+//        d.showPath(i);
+//        cout << "---------" <<endl;
+//    }
+//}
 int main(){
-    string filename = "/Users/cztzc520/WorkSpace/practice/testG5.txt";
-    int V= 8;
-    WeightedSparseGraph<double> sg1 = WeightedSparseGraph<double>(V,false);
-    ReadWeightGraph<WeightedSparseGraph<double>,double>  sr1(sg1,filename);
+//    string filename = "/Users/cztzc520/WorkSpace/practice/testG7.txt";
+    string filename = "/Users/cztzc520/WorkSpace/practice/testG110.txt";
+    int V = 5;
+    WeightedSparseGraph<int > sg1 = WeightedSparseGraph<int>(V,true);
+    ReadWeightGraph<WeightedSparseGraph<int>,int> sr1(sg1,filename);
     sg1.show();
     cout << endl;
-    Krusk<WeightedSparseGraph<double>,double> k = Krusk<WeightedSparseGraph<double>,double>(sg1);
-    vector<Edge<double>> v = k.mesEdges();
-    for(int i = 0 ; i < v.size() ; i++){
-        cout << v[i] << endl;
+    BellmanFord<WeightedSparseGraph<int>,int> b(sg1,0);
+    if(b.negativeCycle()){
+        cout << "contains negative Cycle" << endl;
     }
-    cout << endl;
-    cout << k.result() << endl;
+    else{
+        for(int i = 1 ; i < V ; i++){
+            cout << "shortest path to " << i << " : " << b.shortestPathTo(i) <<endl;
+            b.showPath(i);
+            cout << "-------------" <<endl;
+        }
+    }
+
 }
